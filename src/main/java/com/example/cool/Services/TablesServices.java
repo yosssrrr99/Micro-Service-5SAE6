@@ -10,5 +10,6 @@ public interface TablesServices {
     void removeTable (Long idTable);
     Tables retrieveTable(Long idTable);
     List<Tables> retrieveAllTabless();
+    void SetStateTable();
 
 }

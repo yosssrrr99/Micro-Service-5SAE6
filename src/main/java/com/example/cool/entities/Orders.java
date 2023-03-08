@@ -2,6 +2,7 @@ package com.example.cool.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -14,6 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor
 public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +23,12 @@ public class Orders implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date DateOrder;
     private int NbPlace;
+    private int idUser;
+    @Enumerated(EnumType.STRING)
+    private TypeRes status;
     @ManyToOne
     Tables tables;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "orders")
+
+    @ManyToMany
     private Set<Dishs> dishs;
 }

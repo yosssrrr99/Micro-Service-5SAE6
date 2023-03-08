@@ -1,42 +1,46 @@
 package com.example.cool.Services;
 
+import com.example.cool.Repositories.CalorieRepository;
 import com.example.cool.Repositories.DishRepository;
 import com.example.cool.Repositories.OrdersRepository;
-import com.example.cool.entities.Dishs;
-import com.example.cool.entities.Orders;
+import com.example.cool.Repositories.UserRepository;
+import com.example.cool.entities.*;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
+@Slf4j
 @AllArgsConstructor
-public class DishsServiceImpl implements DishsServices{
+public class DishsServiceImpl implements DishsServices {
 
     private DishRepository dishRepository;
     private OrdersRepository ordersRepository;
+    private UserRepository userRepository;
+    private CalorieRepository calorieRepository;
+
     @Override
-    public Dishs addDishs(Dishs dishs, Long idOrders) {
-        Dishs d=dishRepository.save(dishs);
-        Orders o=ordersRepository.findById(idOrders).orElse(null);
-        d.setOrders(o);
-        return  dishRepository.save(d);
+    public Dishs addDishs(Dishs dishs) {
+
+        return dishRepository.save(dishs);
 
     }
 
     @Override
-    public Dishs updateDishs(Dishs dishs,Long idDishs) {
-        Dishs d=dishRepository.findById(idDishs).orElse(null);
-        d.setIdDish(idDishs);
-        d.setNameDish(d.getNameDish());
-        d.setPriceDish(d.getPriceDish());
+    public Dishs updateDishs(Dishs dishs, Long idDishs) {
 
-        return dishRepository.save(d);
+        dishs.setIdDish(idDishs);
+        return dishRepository.save(dishs);
     }
 
     @Override
     public void removeDishs(Long idDish) {
-       dishRepository.deleteById(idDish);
+        dishRepository.deleteById(idDish);
     }
 
     @Override
@@ -46,8 +50,90 @@ public class DishsServiceImpl implements DishsServices{
 
     @Override
     public List<Dishs> retrieveAllDishs() {
-        List<Dishs> ListDishs=new ArrayList<>();
+        List<Dishs> ListDishs = new ArrayList<>();
         dishRepository.findAll().forEach(ListDishs::add);
-        return  ListDishs;
+        return ListDishs;
     }
+
+    @Override
+    public int normCalor(Long idUser) {
+        User user = userRepository.findById(idUser).orElse(null);
+        double calorDay = 0d;
+        if (user.getGneder().equals("Femme")) {
+            if (user.getAge() >= 18 && user.getAge() <= 30) {
+                calorDay = ((0.06 * user.getWeight()) + 2.037) * 240;
+            } else if (user.getAge() > 30 && user.getAge() <= 60) {
+                calorDay = ((0.034 * user.getWeight()) + 3.54) * 240;
+            } else if (user.getAge() > 60) {
+                calorDay = ((0.04 * user.getWeight()) + 2.76) * 240;
+            }
+        } else if (user.getGneder().equals("Homme")) {
+            if (user.getAge() >= 18 && user.getAge() <= 30) {
+                calorDay = ((0.06 * user.getWeight()) + 2.90) * 240;
+            } else if (user.getAge() > 30 && user.getAge() <= 60) {
+                calorDay = ((0.05 * user.getWeight()) + 3.65) * 240;
+            } else if (user.getAge() > 60) {
+                calorDay = ((0.05 * user.getWeight()) + 2.46) * 240;
+            }
+        }
+
+
+        return (int) calorDay;
+    }
+
+    @Override
+    public String CalculCaloriePlat(Long idUser) {
+        List<Integer> ListPlat=new ArrayList<>();
+        int NbCalorieParPersonne=normCalor(idUser);
+        int NbCaloriesParPlat = 0;
+        //listTypeDishs
+        List<TypeDish> ListaDishs=new ArrayList<>();
+        //listeDishs
+        List<Dishs> ListDishs = dishRepository.findAll();
+        //MapMtaaCalorie
+        List<Calorie> calories =calorieRepository.findAll();
+        //BoucleForMap
+
+            //boucleformtaaListDishs
+            for (Dishs s : ListDishs) {
+
+               String[] y = s.getDescription().split(" ");
+                for (String f : y) {
+                    for (Calorie c:calories) {
+                    String aaa=c.getIngredients();
+                    if (f.contains(aaa)) {
+
+                        NbCaloriesParPlat = NbCaloriesParPlat + c.getNbCalorie();
+                        ListaDishs.add(s.getTypeDish());
+                        }
+                    }
+
+            }
+
+            ListPlat.add(NbCaloriesParPlat);
+
+
+        }
+
+
+        for(Integer b:ListPlat){
+            for(TypeDish td:ListaDishs){
+
+            double NB=  (b-NbCalorieParPersonne * 0.25 );
+            log.info("NbCalorieParPersonn"+NbCalorieParPersonne);
+            log.info("NbCaloriesParPlat"+b);
+            if(NB>0 &&NB<=300) {
+                log.info("le nombre est" + NB);
+                return String.valueOf(td);
+            }
+
+            }
+
+        }
+
+        return "la prochaine fois nchalh compatible";
+    }
+
+
+
 }
