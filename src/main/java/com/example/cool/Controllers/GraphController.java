@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,6 +29,10 @@ public class GraphController {
     @GetMapping("/displayBarGraph")
     public String barGraph(Model model) {
         Date date=new Date();
+        int dated=date.getDate();
+        int datef=date.getDate()+7;
+
+
         int NbComande=0;
         List<Orders> orders=ordersRepository.findAll();
         Map<Date, Integer> surveyMap = new LinkedHashMap<>();
@@ -34,18 +40,18 @@ public class GraphController {
         for(int i=0;i<date.getDate();i++){
 
 
-            Df.setDate(date.getDate()+i);
+            Df.setDate(dated+i);
             NbComande=0;
             for(Orders o:orders) {
 
-            if(o.getDateOrder().getDate()==Df.getDate()){
-                NbComande++;
+                if(o.getDateOrder().getDate()==Df.getDate()){
+                    NbComande++;
+                    surveyMap.put(o.getDateOrder(), NbComande);
 
+                }
 
             }
 
-            }
-            surveyMap.put(Df, NbComande);
 
         }
 

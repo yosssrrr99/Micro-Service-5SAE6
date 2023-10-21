@@ -5,6 +5,8 @@ import com.example.cool.entities.Tables;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,19 +19,29 @@ public class TableController {
 
     TablesServices tablesServices;
     @PostMapping("/add")
-    Tables addTable(@RequestBody Tables tables){
-        return tablesServices.addTables(tables);
+    public ResponseEntity<Tables> addTable(@RequestBody Tables tables){
+
+        Tables t= tablesServices.addTables(tables);
+        return new ResponseEntity<>(t, HttpStatus.OK);
     }
     @PutMapping("/update")
-    Tables UpdateTable(@RequestBody Tables tables){
-        return tablesServices.addTables(tables);
+    public ResponseEntity<Tables> UpdateTable(@RequestBody Tables tables){
+
+        Tables t= tablesServices.addTables(tables);
+        return new ResponseEntity<>(t, HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
     void deleteTables(@PathVariable("id") Long idTables){tablesServices.removeTable(idTables);}
     @GetMapping("/get/{id}")
-    Tables retrieveTableById(@PathVariable("id")Long idTables){return tablesServices.retrieveTable(idTables);}
+    public ResponseEntity<Tables> retrieveTableById(@PathVariable("id")Long idTables){
+        Tables t= tablesServices.retrieveTable(idTables);
+        return new ResponseEntity<>(t, HttpStatus.OK);
+    }
     @GetMapping("/getAll")
-    List<Tables> retrieveAllTables(){return  tablesServices.retrieveAllTabless();}
+    public ResponseEntity<List<Tables>> retrieveAllTables(){
+        List<Tables> tt=  tablesServices.retrieveAllTabless();
+        return new ResponseEntity<>(tt, HttpStatus.OK);
+    }
 
 
 

@@ -17,7 +17,7 @@ import java.util.*;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class OrdersServiceImpl implements OrdersServices{
+public class    OrdersServiceImpl implements OrdersServices{
     private final UserRepository userRepository;
     private final DishRepository dishRepository;
     private final DonnationRepository donnationRepository;
@@ -131,6 +131,7 @@ public class OrdersServiceImpl implements OrdersServices{
     //preference
     @Override
     public String FavoriteMenu(String prefere) {
+        TypeDish  td=TypeDish.Menu1;
             String[] x=prefere.split(" ");
             List<Dishs> ListDishs=dishRepository.findAll();
             int ratings=0;
@@ -142,21 +143,22 @@ public class OrdersServiceImpl implements OrdersServices{
                     for(String f:y){
                         if (f.contains(i)){
                             log.info("mawjoud");
+                            td=s.getTypeDish();
                          ratings++;
                         }
                     }
                 }
             }
-            if (ratings ==3){
-               res="tres compatible";
+            if (ratings >=3){
+               res="tres compatible"+td;
             } else if (ratings==2) {
-                res="moyen compatible";
+                res="moyen compatible"+td;
 
             } else if (ratings==1) {
-                res="1 compatible";
+                res="1 compatible"+td;
 
             } else if (ratings==0) {
-                res="non compatible";
+                res="non compatible"+td;
 
             }
         return  res;

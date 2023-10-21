@@ -23,7 +23,7 @@ public class Orders implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date DateOrder;
     private int NbPlace;
-    private int idUser;
+    private Long idUser;
     @Enumerated(EnumType.STRING)
     private TypeRes status;
     @ManyToOne

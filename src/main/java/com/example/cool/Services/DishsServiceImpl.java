@@ -4,10 +4,14 @@ import com.example.cool.Repositories.CalorieRepository;
 import com.example.cool.Repositories.DishRepository;
 import com.example.cool.Repositories.OrdersRepository;
 import com.example.cool.Repositories.UserRepository;
+import com.example.cool.dto.RequiredResponse;
 import com.example.cool.entities.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +27,8 @@ public class DishsServiceImpl implements DishsServices {
     private OrdersRepository ordersRepository;
     private UserRepository userRepository;
     private CalorieRepository calorieRepository;
-
+@Autowired
+    RestTemplate restTemplate;
     @Override
     public Dishs addDishs(Dishs dishs) {
 
@@ -81,10 +86,45 @@ public class DishsServiceImpl implements DishsServices {
         return (int) calorDay;
     }
 
+
+    public int getcalories(@PathVariable Long id){
+        int x=0; int y=0;
+        RequiredResponse re=new RequiredResponse();
+        com.example.cool.dto.User ls=restTemplate.getForObject("http://CLIENTSERVICEE/user/idu/"+id, com.example.cool.dto.User.class);
+        double calorDay = 0d;
+        if (ls.getGneder().equals("Femme")) {
+            if (ls.getAge() >= 18 && ls.getAge() <= 30) {
+                calorDay = ((0.06 * ls.getWeight()) + 2.037) * 240;
+            } else if (ls.getAge() > 30 && ls.getAge() <= 60) {
+                calorDay = ((0.034 * ls.getWeight()) + 3.54) * 240;
+            } else if (ls.getAge() > 60) {
+                calorDay = ((0.04 * ls.getWeight()) + 2.76) * 240;
+            }
+        } else if (ls.getPreferences().equals("Homme")) {
+            if (ls.getAge() >= 18 && ls.getAge() <= 30) {
+                calorDay = ((0.06 * ls.getWeight()) + 2.90) * 240;
+            } else if (ls.getAge() > 30 && ls.getAge() <= 60) {
+                calorDay = ((0.05 * ls.getWeight()) + 3.65) * 240;
+            } else if (ls.getAge() > 60) {
+                calorDay = ((0.05 * ls.getWeight()) + 2.46) * 240;
+            }
+        }
+
+
+        return(int) calorDay;
+
+    }
+
+
+
+
+
+
+
     @Override
     public String CalculCaloriePlat(Long idUser) {
         List<Integer> ListPlat=new ArrayList<>();
-        int NbCalorieParPersonne=normCalor(idUser);
+        int NbCalorieParPersonne=getcalories(idUser);
         int NbCaloriesParPlat = 0;
         //listTypeDishs
         List<TypeDish> ListaDishs=new ArrayList<>();
