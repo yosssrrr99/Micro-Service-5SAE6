@@ -1,0 +1,28 @@
+<app-header></app-header>
+<section class="section main-banner" id="top" data-section="section1">
+    <video autoplay muted loop id="bg-video">
+        <source src="assets/images/course-video.mp4" type="video/mp4" />
+    </video>
+
+    <div class="video-overlay header-text">
+        <div class="caption">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col" *ngFor="let dish of "> 
+            <div class="card" style="width: 25rem;height: 12rem;" >
+                
+                <div class="card-body" *ngFor="let o of OrderDetails">
+                    
+                  <h5 class="card-title">{{o.nbPlace}}</h5>
+                  <h5 class="card-text">{{o.Status}}</h5>
+                  <h5  class="card-text">Price: {{o.dateOrder}}</h5>
+                  <div class="main-button">
+                    <div class="scroll-to-section">
+                    <button href="#"class="orange-btn" style="margin-bottom: 8px;" >Cancel Dish</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+            </div>
+            </div>
+            </section>

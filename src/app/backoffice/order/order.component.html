@@ -1,0 +1,97 @@
+
+<div class="class-area-container">
+    <div class="container">
+        <div class="card mt-5" style="align-items: center;">
+          <h1>order Dashboard</h1>
+        </div>
+     
+
+
+        <div class="mt-5">
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                   <th>#</th>
+                    <th>Place number</th>
+                    <th>State</th>
+                    <th>Table</th>
+                   
+                </tr>
+            </thead>
+            <tbody class="tbody">
+              <tr *ngFor="let order of orderDetails">
+                <td>{{order.idOrders}}</td>
+                <td>{{order.nbPlace}}</td>
+                <td>{{order.status}}</td>
+                <td>{{order.tables.numTable}}</td>
+             
+          <!--      <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(order)">update</button></td>-->
+           
+                
+        
+    <!-- Button trigger modal -->
+          
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+<!--Update Dish
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Titre de la modale</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateDish()">
+            <div class="form-group">
+              <label for="idOrder">Order number :</label>
+              <input type="text" disabled #idOrders [(ngModel)]="orderToUpdate.idOrders" name="idOrders" id="idOrders"
+                class="form-control" placeholder="Order number">
+            </div>
+            <div class="form-group">
+              <label for="name">Place number :</label>
+              <input type="text" #nbPlace [(ngModel)]="orderToUpdate.nbPlace" name="nbPlace" id="nbPlace" class="form-control"
+                placeholder="Place number">
+                {{orderToUpdate.idOrder}}
+            </div>
+            <div class="form-group">
+              <label for="address">State:</label>
+              <input type="text" #status [(ngModel)]="orderToUpdate.status" name="status" id="status"
+                class="form-control" placeholder="State">
+            </div>
+          
+              <div class="form-group">
+                <input type="submit" value="Update"data-bs-dismiss="modal" class="btn btn-primary">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              </div>
+          </form>
+        </div>
+       
+    </div>
+  </div>
+-->
+<!--Nombre de calorie 
+<div class="modal fade" id="exampleModal1" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        Contenu de la deuxième modal
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>  -->
+</div>
+
+      
+ 

@@ -1,0 +1,26 @@
+.orange-btn{
+    background: #F77D24;
+    display: inline-block;
+    color: #fff;
+
+    font-family: Sans-serif;
+    font-size: 18px;
+    border: none;
+    padding-left: 8px;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    padding: 10px 8px;
+    margin-right: 10px;
+    background-color: #F77D24;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .button:last-child {
+    margin-right: 0;
+  }

@@ -1,0 +1,72 @@
+<app-header></app-header>
+<section class="section main-banner" id="top" data-section="section1">
+    <video autoplay muted loop id="bg-video">
+        <source src="assets/images/course-video.mp4" type="video/mp4" />
+    </video>
+
+    <div class="video-overlay header-text">
+        <div class="caption">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col" *ngFor="let dish of dishDetails"> 
+            <div class="card" style="width: 25rem;height: 18rem;" >
+                <div class="card-body">
+                  <h5 class="card-title">{{dish.typeDish}}</h5>
+                 
+                </div>
+                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Description: {{dish.description}}</li>
+                    <li class="list-group-item">Price: {{dish.priceDish}}</li>
+                    <li class="list-group-item">Calories: {{ dish.NbCalorieParPlat }}</li>
+                  </ul>
+                  <div class="card-body">
+                  <div class="button-container">
+                   <button href="#"class="orange-btn button" style="margin-bottom: 50px;" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="RecupereDish(dish.idDish)">Reserve</button>
+                  <button href="#"class="orange-btn button" style="margin-bottom: 50px;">Check Compatibility</button>
+                </div>
+                </div>
+           
+        </div>
+    </div>
+    </div>
+            </div>
+            </div>
+        
+              
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Reserve dish</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <form #registerForm="ngForm" >
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" name="dateOrder"   #dateOrder="ngModel"  [(ngModel)] = "Order.dateOrder">
+                        </div>
+                     
+                        <div class="form-group">
+                            <label>place number</label>
+                            <input type="number" class="form-control" name="nbPlace" #nbPlace="ngModel" [(ngModel)]="Order.nbPlace">
+                        </div>
+                        
+                     
+                        <div class="form-group">
+                            <label>Table's number</label>
+                           <select class="form-control" id="exampleFormControlSelect1" name="id1"  #id1="ngModel" [(ngModel)]="idTable" >
+                                <option *ngFor="let e of tables" value="{{e.idTable}}">{{e.numTable}}</option>
+                              </select>
+                        </div>
+                       
+                      <div class="form-group">
+                        <button type="submit" class="orange-btn btn-fill pull-right" (click) = "addOrder()">Reserve</button>
+                      </div>
+                    </form>
+                </div>
+               
+            </div>
+          </div> 
+          </div>  
+       
+</section>

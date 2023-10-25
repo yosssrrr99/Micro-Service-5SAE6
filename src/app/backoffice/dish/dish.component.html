@@ -1,0 +1,162 @@
+
+<div class="class-area-container">
+<div class="container">
+    <div class="card mt-5" style="align-items: center;">
+      <h1>dish Dashboard</h1>
+    </div>
+  
+    <div class="card mt-5" style="padding: 20px;">
+      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+        <div class="form-group">
+          <label for="name">Dish Name :</label>
+          <input type="text" #name="ngModel" (ngModel)="Dish.nameDish" name="nameDish" id="name" class="form-control" placeholder="Dish Name" required minlength="5">
+          <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+            <div *ngIf="name.errors?.['required']">Name is required</div>
+            <div *ngIf="name.errors?.['minlength']">Name must have at least 5 characters</div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Dish Type  :</label>
+          
+          <select [(ngModel)]="Dish.typeDish" #type="ngModel" name="typeDish" id="typeDish" class="form-control" required>
+            <option value="Menu1">Menu1</option>
+            <option value="Menu2">Menu2</option>
+            </select>
+            <div class="alert alert-danger" *ngIf="type.touched && type.invalid">
+              <div *ngIf="type.errors?.['required']">Type is required</div>
+
+          </div>
+          
+        </div>
+        <div class="form-group">
+          <label for="percentage">Dish Description:</label>
+          <input type="text" #description="ngModel" (ngModel)="Dish.description" name="description" id="description" class="form-control"
+            placeholder="Dish description" required>
+            <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+              <div *ngIf="description.errors?.['required']">Description is required</div>
+
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="percentage">Dish Price :</label>
+            <input type="number" #price="ngModel" (ngModel)="Dish.priceDish" name="priceDish" id="price" class="form-control"
+              placeholder="Dish Price" required>
+              <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+                <div *ngIf="price.errors?.['required']">Price is required</div>
+            </div>
+          </div>
+        <div class="form-group">
+          <input type="submit"[disabled]="registerForm.invalid" value="Register" class="btn btn-primary w-100">
+        </div>
+      </form>
+    </div>
+  
+    <div class="mt-5">
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+               <th>#</th>
+                <th>Name Dish</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+          <tr *ngFor="let dish of dishDetails">
+            <td>{{dish.idDish}}</td>
+            <td>{{dish.typeDish}}</td>
+            <td>{{dish.description}}</td>
+            <td>{{dish.priceDish}}</td>
+    
+<!-- Button trigger modal -->
+            <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(dish)">update</button></td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteDish(dish.idDish)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+<!--Update Dish-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Titre de la modale</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateDish()">
+            <div class="form-group">
+              <label for="idDish">Dish number :</label>
+              <input type="text" disabled #idDish [(ngModel)]="dishToUpdate.idDish" name="idDish" id="idDish"
+                class="form-control" placeholder="Dish number">
+            </div>
+            <div class="form-group">
+              <label for="name">Dish Name :</label>
+              <input type="text" #nameDish="ngModel" [(ngModel)]="dishToUpdate.nameDish" name="nameDish" id="nameDish" class="form-control"
+                placeholder="Dish Name" required minlength="5">
+                <div class="alert alert-danger" *ngIf="nameDish.touched && nameDish.invalid">
+                  <div *ngIf="nameDish.errors?.['required']">Name is required</div>
+                  <div *ngIf="nameDish.errors?.['minlength']">Name must have at least 5 characters</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="address">Type Dish :</label>
+              <select [(ngModel)]="dishToUpdate.typeDish" name="typeDish" id="typeDish" class="form-control" required>
+                <option value="Menu1">Menu1</option>
+                <option value="Menu2">Menu2</option>
+                <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                  <div *ngIf="description.errors?.['required']">Description is required</div>
+                 
+              </div>
+              </select>
+              
+            </div>
+            
+            
+            
+            <div class="form-group">
+              <label for="percentage">Dish description :</label>
+              <input type="text" #description="ngModel" [(ngModel)]="dishToUpdate.description" name="description" id="description"
+                class="form-control" placeholder="Dish Description" required>
+                <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                  <div *ngIf="description.errors?.['required']">Description is required</div>
+                 
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="percentage">Dish price :</label>
+                <input type="text" #priceDish="ngModel" [(ngModel)]="dishToUpdate.priceDish" name="priceDish" id="priceDish"
+                  class="form-control" placeholder="Dish Price" required>
+                  <div class="alert alert-danger" *ngIf="priceDish.touched && priceDish.invalid">
+                    <div *ngIf="priceDish.errors?.['required']">Price is required</div>
+                   
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="submit" [disabled]="updateForm.invalid" value="Update"data-bs-dismiss="modal" class="btn btn-primary">
+                <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              </div>
+          </form>
+        </div>
+       
+    </div>
+  </div>
+
+<!--Nombre de calorie 
+<div class="modal fade" id="exampleModal1" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        Contenu de la deuxième modal
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>  -->
+</div>

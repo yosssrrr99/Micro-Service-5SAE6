@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<div class="body">
+    <div class="comment-session">
+        <div class="post-comment">
+            <div class="list" *ngFor="let sujet of sujetDetails">
+                <div class="user">
+                    <div class="user-image"><img src="assets/img/avatar.png" alt="image"></div>
+                    <div class="user-meta">
+                        <div class="name">Sahnoun</div>
+                        <div class="comment-post"> {{sujet.description}}</div>
+                    </div>
+                    <div class="subforum-stats subforum-column center">
+                        <a  class="comment-button" (click)="edit(sujet)">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a [routerLink]="['/comment', sujet._id]" class="comment-button"  >
+                            <i class="fa fa-comment"></i>
+                        </a>
+                        <a class="comment-button"(click)="deleteSujet(sujet._id)">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="comment-box">
+            <div class="user">
+                <div class="image"></div>
+                <div class="name"></div>
+            </div>
+            <form (submit)="addOrUpdateSujet()">
+                
+                <div class="form-group">
+                    <label for="title">Titre du sujet</label>
+                    <input type="text" #title="ngModel" class="form-control" name="title" id="title" [(ngModel)]="Sujet.title">
+                </div>
+                <div class="form-group">
+                    <label for="about">Description courte</label>
+                    <input type="text" #about="ngModel" class="form-control" name="about" id="about" [(ngModel)]="Sujet.about">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description détaillée</label>
+                    <textarea class="form-control" #description="ngModel" name="description" id="description" [(ngModel)]="Sujet.description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tags (séparés par des virgules)</label>
+                    <input type="text" #tags="ngModel" class="form-control" name="tags" id="tags" [(ngModel)]="Sujet.tags">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary add-topic-button">Add Subject</button>
+                    <button type="submit" style="margin: 10px;" class="btn btn-primary add-topic-button">Update Subject</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

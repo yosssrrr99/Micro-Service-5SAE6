@@ -1,0 +1,47 @@
+
+
+.yosr {
+  background-color: rgba(22,34,57,0.95);
+  height: 80px;
+  position: fixed;
+  z-index: 12;
+  width: 100%;
+  top: 0;
+}
+
+.yosr .logo {
+  float: left;
+  line-height: 80px;
+  padding-left: 60px;
+}
+
+.yosr .logo a {
+  font-size: 36px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #fff;
+}
+.yosr .logo a em {
+  font-style: normal;
+  color: #f5a425;
+}
+
+.features-content .content-hide {
+    display: none;
+  }
+  
+  .features-content:hover .content-hide {
+    display: block;
+  }
+  .tabs-content article {
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .tabs-content article.active {
+    opacity: 1;
+  }
+
+ 
+
+
+  

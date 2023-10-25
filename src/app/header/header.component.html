@@ -1,0 +1,28 @@
+ <!--header-->
+ <header class="yosr clearfix " role="header">
+  <div class="logo">
+    <a routerLink=""><em>Cool</em> </a>
+  </div>
+  <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+  <nav id="menu" class="main-nav" role="navigation">
+    <ul class="main-menu">
+      <li><a routerLink="">Home</a></li>
+      <li class="has-submenu"><a routerLink="">About Us</a>
+        <ul class="sub-menu">
+          <li><a routerLink="#section2" (click)="scrollTo('section2')">Hostel university</a></li>
+          <li><a routerLink="#section3" (click)="scrollTo('section3')">Restaurant</a></li>
+          <li><a routerLink="#section3" (click)="scrollTo('section3')">Event</a></li>
+         
+        </ul>
+      </li>
+      <li><a routerLink="/forum">Forum</a></li>
+      <!-- <li><a href="#section5">Video</a></li> -->
+      <li><a routerLink="" (click)="scrollTo('section3')">Donate</a></li>
+      <li> <img class="yy"src="../../assets/images/iconPanier.png" role="button" routerLink="/panier"></li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+     
