@@ -1,0 +1,69 @@
+<app-header></app-header>
+<section class="section coming-soon st" data-section="section3" id="section3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 col-xs-12">
+          <div class="continer centerIt">
+            <div>
+              <h4>Secure Your Hostely,<em> Secure Your Future!</em></h4>
+           
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="right-content">
+            <div class="top-content">
+              <h6>Register For Reserve Room </h6>
+            </div>
+            <form #registerForm="ngForm" (ngSubmit)="addReservation()">
+              <div class="row">
+                <div class="col-md-12">
+                  <fieldset>
+                    <input type="date" name="dateReservation" id="dateReservation"   #date="ngModel" [(ngModel)]="Reservation.dateReservation" class="form-control" placeholder="date">
+                 
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
+                    <input type="number" #duration="ngModel" [(ngModel)]="Reservation.duration" name="duration" id="duration" class="form-control"
+                placeholder="duration">
+                   
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                    <fieldset>
+                        <input type="number" #nbPerson="ngModel" [(ngModel)]="Reservation.nbPerson" name="nbPerson" id="nbPerson" class="form-control"
+                        placeholder="nbPerson">
+                    </fieldset>
+                  </div>
+                  <div class="col-md-12">
+                    <fieldset>
+                        <select  class="form-control" id="exampleFormControlSelect1" name="id1" #id1="ngModel" [(ngModel)]="idRomm" >
+                            <option *ngFor="let e of room" value="{{e.idRoom}}">{{e.idRoom}}</option>
+                          </select>
+                       
+                    </fieldset>
+                  </div>
+                
+               
+                <div class="col-md-12">
+                  <fieldset>
+                    <input type="submit" [disabled]="registerForm.invalid" value="Register" class="btn btn-primary w-100">
+                  </fieldset>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+ 
+  
+
+
+
+

@@ -1,0 +1,141 @@
+
+<div class="card col-12 justify-content-center">
+    <div class="container col-12 justify-content-center">
+        <div class="card mt-5" style="margin-left: 20%;">
+      <h1 style="margin-left: 30%;">Events Dashboard</h1>
+    </div>
+<div class="card mt-10" style="margin-left: 20%;">
+        <form >
+                <div class="input-group">
+                    <input type="text" [(ngModel)]="nom" name="name" placeholder="Name ..." class="form-control">
+                </div>
+             
+                <div class="input-group"  style="margin-top: 5px;">
+                    <input type="text" [(ngModel)]="duration" name="duration" placeholder="duration ..." class="form-control">
+                </div>
+                <div class="input-group"  style="margin-top: 5px;">
+                  <input type="number" [(ngModel)]="capacity" name="capacity" placeholder="capacity ..." class="form-control">
+               </div>
+                <div class="input-group"style="margin-top: 5px;">
+                   
+                    <input  type="date" [(ngModel)]="date" name="date" placeholder="date ..." class="form-control">
+                </div>
+                <div class="input-group"style="margin-top: 5px;">
+              
+                    <input type="text" [(ngModel)]="description" name="description" placeholder="description ..." class="form-control">
+                </div>
+                
+              <div class="input-group"style="margin-top: 5px;">
+                <button type="submit" class="btn btn-info btn-fill pull-right"  (click)="AddEvent()" style="margin-left: 45%;" >Save</button>
+              </div>
+        </form>
+    </div>
+<!-- getall events -->
+<div class="card col-12 justify-content-center" >
+
+    <div  style="padding-left: 20%;" >
+       <!-- SidebarSearch Form -->
+
+      <table class="table m-30">
+        <thead>
+            <tr>
+              <div class="form-inline">
+                <div class="input-group" >
+                  <input class="form-control " (change)="onKeyUp()"  [(ngModel)]="search" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn" (click) = "onKeyUp()">
+                        <i class="fas fa-search fa-fw"></i>
+                        </button>
+                    </div>
+                </div>
+              </div>
+            </tr>
+            <tr>
+                <th >Nom</th>
+                <th >Date</th>
+                <th >Description</th>
+                <th >Duration</th>
+                <th >Capacity</th>
+                <th></th>
+                <th></th>
+               
+            </tr>
+        </thead>
+        <tbody class="tbody" >
+          <tr *ngFor="let event of events" >
+             <td >{{event.nom}}</td>  
+             <td><span class="badge badge-success">{{event.date}}</span></td> 
+             <td><div class="sparkbar" data-color="#00a65a" data-height="20">{{event.description}}</div></td>
+             <td>{{event.duration}}</td>
+             <td>{{event.capacity}}</td>
+            <td><button type="button" class="btn btn-info" (click)="edit(event)"  ><i class="nav-icon fas fa-edit"></i></button></td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteEvent(event.idEvent)" ><i class="nav-icon fas fa-trash"></i></button></td>
+            
+    
+<!-- Button trigger modal -->
+      
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+  
+
+
+
+<!--Update Dish-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Titre de la modale</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+    </div>
+     <!-- <div class="modal-body">
+      <form #updateForm="ngForm" (ngSubmit)="updateDish()">
+        <div class="form-group">
+          <label for="idOrder">Order number :</label>
+          <input type="text" disabled #idOrders [(ngModel)]="orderToUpdate.idOrders" name="idOrders" id="idOrders"
+            class="form-control" placeholder="Order number">
+        </div>
+        <div class="form-group">
+          <label for="name">Place number :</label>
+          <input type="text" #nbPlace [(ngModel)]="orderToUpdate.nbPlace" name="nbPlace" id="nbPlace" class="form-control"
+            placeholder="Place number">
+            {{orderToUpdate.idOrder}}
+        </div>
+        <div class="form-group">
+          <label for="address">State:</label>
+          <input type="text" #status [(ngModel)]="orderToUpdate.status" name="status" id="status"
+            class="form-control" placeholder="State">
+        </div>
+      
+          <div class="form-group">
+            <input type="submit" value="Update"data-bs-dismiss="modal" class="btn btn-primary">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+      </form>
+    </div>  -->
+   
+</div>
+</div>
+
+<!--Nombre de calorie 
+<div class="modal fade" id="exampleModal1" tabindex="-1"  aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+ 
+  <div class="modal-body">
+    Contenu de la deuxième modal
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+    <button type="button" class="btn btn-primary">Enregistrer</button>
+  </div>
+</div>
+</div>
+</div>  -->
+</div>
+
+  
+

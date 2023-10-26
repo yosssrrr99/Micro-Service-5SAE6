@@ -1,0 +1,111 @@
+<div class="class-area-container">
+    <div class="container">
+        <div class="card mt-5" style="align-items: center;">
+          <h1>room Dashboard</h1>
+        </div>
+      
+        <div class="card mt-5" style="padding: 20px;">
+          <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+            <div class="form-group">
+              <label for="capacity">capacity :</label>
+              <input type="number" #capacity (ngModel)="Room.capacity" name="capacity" id="capacity" class="form-control" placeholder="Dish Name">
+            </div>
+            <div class="form-group">
+              <label for="placeDispo">place disponible  :</label>
+              <input type="number" #placeDispo (ngModel)="Room.placeDispo" name="placeDispo" id="placeDispo" class="form-control"
+                placeholder="placeDispo">
+            </div>
+            
+            <div class="form-group">
+                <label for="percentage">room state :</label>
+                <input type="text" #state (ngModel)="Room.state" name="state" id="state" class="form-control"
+                  placeholder="room state">
+              </div>
+            <div class="form-group">
+              <input type="submit" value="Register" class="btn btn-primary w-100">
+            </div>
+          </form>
+        </div>
+      
+        <div class="mt-5">
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                   <th>#</th>
+                    <th>capacity</th>
+                    <th>available place</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+              <tr *ngFor="let r of roomDetails">
+                <td>{{r.idRoom}}</td>
+                <td>{{r.capacity}}</td>
+                <td>{{r.placeDispo}}</td>
+                <td>{{r.state}}</td>
+        
+    <!-- Button trigger modal -->
+                <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(r)">update</button></td>
+                <td><button type="button" class="btn btn-danger" (click)="deleteRoom(r.idRoom)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+    <!--Update Dish-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Titre de la modale</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+              <form #updateForm="ngForm" (ngSubmit)="updateRoom()">
+                
+                <div class="form-group">
+                  <label for="capacity">Capacity :</label>
+                  <input type="number" #capacity [(ngModel)]="roomToUpdate.capacity" name="capacity" id="capacity" class="form-control"
+                    placeholder="capacity">
+                </div>
+
+                <div class="form-group">
+                  <label for="address">Available place :</label>
+                  <input type="number" #placeDispo [(ngModel)]="roomToUpdate.placeDispo" name="placeDispo" id="placeDispo"
+                    class="form-control" placeholder="placeDispo">
+                </div>
+                
+                <div class="form-group">
+                  <label for="state">State :</label>
+                  <input type="text" #state [(ngModel)]="roomToUpdate.state" name="state" id="state"
+                    class="form-control" placeholder="state">
+                </div>
+                <div class="form-group">
+                  <input type="submit" [disabled]="updateForm.invalid" value="Update"data-bs-dismiss="modal" class="btn btn-primary">
+                  <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+
+                
+              </form>
+            </div>
+           
+        </div>
+      </div>
+    
+    <!--Nombre de calorie 
+    <div class="modal fade" id="exampleModal1" tabindex="-1"  aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         
+          <div class="modal-body">
+            Contenu de la deuxième modal
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-primary">Enregistrer</button>
+          </div>
+        </div>
+      </div>
+    </div>  -->
+    </div>

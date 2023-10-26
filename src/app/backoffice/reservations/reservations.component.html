@@ -1,0 +1,71 @@
+<div class="card col-12 justify-content-center">
+    <div class="container col-12 justify-content-center">
+        <div class="card mt-5" style="margin-left: 20%;">
+      <h1 style="margin-left: 30%;">Reservation Dashboard</h1>
+    </div>
+  <div class="card mt-10" style="margin-left: 20%;">
+        <form >
+                <div class="input-group">
+                    <span class="input-group-text">Nombre de personne</span> 
+                    <input type="number" [(ngModel)]="nbPerson" name="nbPerson" placeholder="nbPerson ..." class="form-control">
+                </div>
+                <div class="input-group"style="margin-top: 5px;">
+                    <span class="input-group-text">Date</span>
+                    <input type="date" [(ngModel)]="dateRes" name="dateRes" placeholder="dateRes ..." class="form-control">
+                </div>
+
+                <div class="input-group"style="margin-top: 5px;">
+                    <span class="input-group-text">Prix</span>
+                    <input type="number" [(ngModel)]="price" name="price" placeholder="price ..." class="form-control">
+                </div>
+
+                <!-- <div class="input-group"style="margin-top: 5px;">
+                    <span class="input-group-text">Is it empty?</span>
+                    <select class="form-select"  (change)="onChange($event?.target)" placeholder="Is it empty?" >
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
+                </div> -->
+              <div class="input-group"style="margin-top: 5px;">
+                <button type="submit" class="btn btn-info btn-fill pull-right"  (click)="addReservation()" style="margin-left: 45%;" >Ajouter Reservation</button>
+              </div>
+        </form>
+    </div> 
+<!-- getall events -->
+<div class="card col-12 justify-content-center" >
+    <div  style="padding-left: 20%;" >
+      <table class="table m-30">
+        <thead>
+            <tr>
+                <th >Nombre de personne</th>
+                <th >Date</th>
+                <th >Price</th>
+                <th></th>
+                <th></th>
+               
+            </tr>
+        </thead>
+        <tbody class="tbody" > 
+            <tr *ngFor="let reserv of reservations" >   
+             <td >{{reserv.nbPerson}}</td>  
+             <td><span class="badge badge-success">{{reserv.dateRes}}</span></td> 
+             <td><div class="sparkbar" data-color="#00a65a" data-height="20">{{reserv.price}}DT</div></td>
+        
+         
+            <td><button type="button" class="btn btn-info" (click)="edit(reserv)" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="nav-icon fas fa-edit"></i></button></td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteReservation(reserv.idRes)" ><i class="nav-icon fas fa-trash"></i></button></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+  
+
+

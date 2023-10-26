@@ -1,0 +1,164 @@
+<app-header></app-header>
+
+<section  *ngIf ="reserved"  class="section coming-soon" data-section="section3" id="section3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="continer centerIt">
+            <div>
+              <h4><em>Reservation successfully created  <i class="nav-icon fas fa-check"></i>  Check your email please !   </em></h4>
+           
+            </div>
+          </div>
+
+          
+        </div>
+      
+      </div>
+    </div>
+</section>
+
+
+<section *ngIf ="reserve" class="section coming-soon" data-section="section3" id="section3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 col-xs-12">
+          <div class="continer centerIt">
+            <div>
+              <h4>Make a  <em>Reservation</em></h4>
+           
+            </div>
+          </div>
+
+          
+        </div>
+        <div class="col-md-5">
+          <div class="right-content">
+            <div class="top-content">
+              <h6>Reservation </h6>
+            </div>
+            <form >
+              <div class="row">
+                <div class="col-md-12">
+                    <fieldset>
+                      <input type="number" (change)="onKeyUp($event)" [(ngModel)]="nbPlace"  name="firstName" id="firstName" class="form-control" placeholder="Nombre des Personnes">
+                    </fieldset>
+                  </div>
+                
+               
+                <div class="col-md-12">
+
+                    <fieldset>
+                        <h4><em style=" color: rgb(255, 162, 0);">{{price}} DT</em></h4>
+                    </fieldset>
+                  <fieldset>
+                    <button (click)="Reserve()" class="btn btn-primary w-100">Réserver </button>
+                      
+                  </fieldset>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section id="top" style="background-color: rgba(22,34,57,0.95);">
+
+    <!-- <div class="container-fluid"> -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="section-heading">
+                <h2>Choose your event</h2>
+            </div>
+        </div>
+         
+        
+        <div class="owl-carousel  row col-12 owl-theme"> 
+        <div class="d-flex flex-row flex-wrap justify-content-center" style="margin-bottom: 45px; "> 
+         <div class="item col-2 d-flex flex-column " style="background-color: white; border-radius: 10px; margin-right: 8px; margin-top: 20px;" *ngFor="let event of events" >
+                <img style="width: 106%; margin-left:-3%;border-top-left-radius: 10px;border-top-right-radius: 10px;" 
+                src="assets/images/events.jpg" alt="Course #1">
+                <div class="down-content ">
+                  <h4>{{event.nom}}</h4>
+                  <p>{{event.description}}</p>
+                  <h6>{{event.date}}</h6>
+                  <div class="row col-12" style="margin-bottom: 5px;">
+                    <img src="assets/images/image.png" alt="Avatar" class="col-3" style="border-radius: 50%;width: 70px; border:30px ; border-color: rgb(255, 136, 0);">
+
+                    <div class="col-4"></div>
+                    <div class="text-button-pay col-5" style="margin-right:0px;">
+                        <button (click)="toggleReserve(event.idEvent)" style=" background-color: transparent">Réserver <i class="fa fa-angle-double-right"  style="margin-top:10px; color: rgb(255, 136, 0);"  ></i></button>
+                      </div>
+                  </div>
+                 
+                </div>
+              </div> 
+         </div>  
+      </div> 
+
+        <!-- </div> -->
+    </div>
+
+    <!-- <div id="carouselExampleControls" class="carousel slide border border-primary d-flex flex-row justify-content-center" data-bs-ride="carousel">
+        <div class="carousel-inner d-inline" >
+            <div class="carousel-item active border border-primary item col-2 d-flex flex-column"
+                style="background-color: white; border-radius: 10px;">
+                <img style="width: 106%; margin-left:-3%;border-top-left-radius: 10px;border-top-right-radius: 10px;"
+                    src="assets/images/courses-01.jpg" alt="Course #1">
+                <div class="down-content ">
+                    <h4>aaa</h4>
+                    <p>bbbbb</p>
+                    <h6>mmmmmmmm</h6>
+                    <div class="row col-12" style="margin-bottom: 5px;">
+                        <img src="assets/images/image.png" alt="Avatar" class="col-3"
+                            style="border-radius: 50%;width: 70px; border:30px ; border-color: rgb(255, 136, 0);">
+
+                        <div class="col-4"></div>
+                        <div class="text-button-pay col-5" style="margin-right:0px;">
+                            <a href="#" style=" color: rgb(255, 136, 0);">Réserver <i class="fa fa-angle-double-right"
+                                    style="margin-top:10px; color: rgb(255, 136, 0);"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="carousel-item border border-primary item col-2 d-flex flex-column"
+                style="background-color: white; border-radius: 10px" *ngFor="let event of events">
+                <img style="width: 106%; margin-left:-3%;border-top-left-radius: 10px;border-top-right-radius: 10px;"
+                    src="assets/images/courses-01.jpg" alt="Course #1">
+                <div class="down-content ">
+                    <h4>{{event.nom}}</h4>
+                    <p>{{event.description}}</p>
+                    <h6>{{event.date}}</h6>
+                    <div class="row col-12" style="margin-bottom: 5px;">
+                        <img src="assets/images/image.png" alt="Avatar" class="col-3"
+                            style="border-radius: 50%;width: 70px; border:30px ; border-color: rgb(255, 136, 0);">
+
+                        <div class="col-4"></div>
+                        <div class="text-button-pay col-5" style="margin-right:0px;">
+                            <a href="#" style=" color: rgb(255, 136, 0);">Réserver <i class="fa fa-angle-double-right"
+                                    style="margin-top:10px; color: rgb(255, 136, 0);"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev border border-primary" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next border border-primary" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div> -->
+
+</section>
+
+<app-footer></app-footer>

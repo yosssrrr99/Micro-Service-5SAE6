@@ -29,6 +29,9 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { PanierComponent } from './panier/panier.component';
 import { CommentaireComponent } from './commentaire/commentaire.component';
 import { CommComponent } from './comm/comm.component';
+import { DisplayEventComponent } from './display-event/display-event.component';
+import { AbonementFrontComponent } from './abonement-front/abonement-front.component';
+import { ReservationRoomFrontComponent } from './reservation-room-front/reservation-room-front.component';
 
 
 @NgModule({
@@ -54,6 +57,9 @@ import { CommComponent } from './comm/comm.component';
     PanierComponent,
     CommentaireComponent,
     CommComponent,
+    DisplayEventComponent,
+    AbonementFrontComponent,
+    ReservationRoomFrontComponent,
 
    
     

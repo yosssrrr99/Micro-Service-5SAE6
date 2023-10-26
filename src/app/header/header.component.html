@@ -9,13 +9,15 @@
       <li><a routerLink="">Home</a></li>
       <li class="has-submenu"><a routerLink="">About Us</a>
         <ul class="sub-menu">
-          <li><a routerLink="#section2" (click)="scrollTo('section2')">Hostel university</a></li>
+          <li><a routerLink="/reservationroom" (click)="scrollTo('section2')">Hostel university</a></li>
           <li><a routerLink="#section3" (click)="scrollTo('section3')">Restaurant</a></li>
-          <li><a routerLink="#section3" (click)="scrollTo('section3')">Event</a></li>
+          <li><a routerLink="/listevent" (click)="scrollTo('section3')">Event</a></li>
+          <li><a routerLink="/abon" (click)="scrollTo('section3')">Reserve Bus</a></li>
          
         </ul>
       </li>
       <li><a routerLink="/forum">Forum</a></li>
+      <li><a routerLink="/abon">Reserve Bus</a></li>
       <!-- <li><a href="#section5">Video</a></li> -->
       <li><a routerLink="" (click)="scrollTo('section3')">Donate</a></li>
       <li> <img class="yy"src="../../assets/images/iconPanier.png" role="button" routerLink="/panier"></li>

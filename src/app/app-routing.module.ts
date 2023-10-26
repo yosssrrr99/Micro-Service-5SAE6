@@ -9,6 +9,10 @@ import { DonnateComponent } from './donnate/donnate.component';
 import { PanierComponent } from './panier/panier.component';
 import { CommentaireComponent } from './commentaire/commentaire.component';
 import { CommComponent } from './comm/comm.component';
+import { DisplayEventComponent } from './display-event/display-event.component';
+import { AbonementFrontComponent } from './abonement-front/abonement-front.component';
+import { ReservationRoomComponent } from './backoffice/reservation-room/reservation-room.component';
+import { ReservationRoomFrontComponent } from './reservation-room-front/reservation-room-front.component';
 
 const routes: Routes = [   
  { path: '', component: HomeComponent },
@@ -20,6 +24,9 @@ const routes: Routes = [
 { path: 'comm', component: CommComponent },
 { path: 'donnate', component: DonnateComponent },
 { path: 'panier', component: PanierComponent },
+{ path: 'listevent', component: DisplayEventComponent },
+{ path: 'abon', component: AbonementFrontComponent},
+{ path: 'reservationroom', component: ReservationRoomFrontComponent},
 { path: 'admin', loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule) }
 ];
 
